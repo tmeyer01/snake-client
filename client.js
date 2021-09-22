@@ -1,6 +1,8 @@
 const net = require("net");
-// establishes a connection with the game server
 
+
+
+// establishes a connection with the game server
 const connect = function () {
   const conn = net.createConnection({
     host: "135.23.223.133",
@@ -13,11 +15,16 @@ const connect = function () {
   conn.on("data", (data)=>{
     console.log(data);
   })
+  conn.on("connect", ()=>{
+    console.log("Successfully connected to game server")
+    conn.write("Name: TBM");
+
+  })
+  
   
   return conn;
 };
 
 module.exports = {
-  net,
-  connect,
+  connect
 };
